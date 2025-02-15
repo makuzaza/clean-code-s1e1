@@ -7,42 +7,42 @@
 
 // Event handling, user interaction is what starts the code execution.
 
-var taskInput = document.querySelector(".task"); // Selects the first element with class "task"
+var taskInput = document.querySelector(".add-task__input"); // Selects the first element with class "task"
 var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
-var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
+var incompleteTaskHolder=document.getElementById("task-list__incomplete");//ul of #incomplete-tasks
+var completedTasksHolder=document.getElementById("task-list__completed");//completed-tasks
 
 
 //New task list item
 var createNewTaskElement=function(taskString) {
 
   var listItem=document.createElement("li");
-  listItem.className = "mode"; // Add the class for styling
+  listItem.className = "task-list__mode"; // Add the class for styling
 
   //input (checkbox)
   var checkBox=document.createElement("input");
   checkBox.type = "checkbox";
-  checkBox.className = "input-checkbox"; // Add the class for styling
+  checkBox.className = "task-list__checkbox"; // Add the class for styling
 
   //label
   var label=document.createElement("label");
   label.innerText = taskString;
-  label.className = "new-task"; // Add the class for styling
+  label.className = "task-list__label"; // Add the class for styling
 
   //input (text)
   var editInput=document.createElement("input");
   editInput.type = "text";
-  editInput.className = "task"; // Add the class for styling
+  editInput.className = "add-task__input"; // Add the class for styling
 
 
   //button.edit
   var editButton=document.createElement("button");
   editButton.innerText = "Edit";
-  editButton.className = "edit"; // Add the class for styling
+  editButton.className = "task-list__edit"; // Add the class for styling
 
   //button.delete
   var deleteButton=document.createElement("button");
-  deleteButton.className = "delete"; // Add the class for styling
+  deleteButton.className = "task-list__delete"; // Add the class for styling
 
   var deleteButtonImg=document.createElement("img");
   deleteButtonImg.src = './remove.svg';
@@ -78,8 +78,8 @@ var editTask=function() {
   var listItem=this.parentNode;
   var editInput=listItem.querySelector('input[type=text]');
   var label=listItem.querySelector("label");
-  var editBtn=listItem.querySelector(".edit");
-  var containsClass=listItem.classList.contains("edit-mode");
+  var editBtn=listItem.querySelector(".task-list__edit");
+  var containsClass=listItem.classList.contains("task-list__edit-mode");
     
   //If class of the parent is .editmode
   if(containsClass) {
@@ -92,7 +92,7 @@ var editTask=function() {
   }
 
   //toggle .edit-mode on the parent.
-  listItem.classList.toggle("edit-mode");
+  listItem.classList.toggle("task-list__edit-mode");
 };
 
 //Delete task
@@ -138,8 +138,8 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler) {
   console.log("bind list item events");
   //select ListItems children
   var checkBox=taskListItem.querySelector("input[type=checkbox]");
-  var editButton=taskListItem.querySelector(".edit");
-  var deleteButton=taskListItem.querySelector(".delete");
+  var editButton=taskListItem.querySelector(".task-list__edit");
+  var deleteButton=taskListItem.querySelector(".task-list__delete");
 
   //Bind editTask to edit button.
   editButton.onclick=editTask;
